@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer("hours");
             $table->unsignedBigInteger("employee_id");
-            $table->timestamp("is_payed")->nullable();
+            $table->timestamp("is_paid")->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

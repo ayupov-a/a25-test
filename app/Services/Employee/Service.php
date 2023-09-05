@@ -11,7 +11,7 @@ class Service
 
     public function store($data)
     {
-        Employee::create($data);
+        return Employee::create($data);
     }
     public function update($employee, $data)
     {

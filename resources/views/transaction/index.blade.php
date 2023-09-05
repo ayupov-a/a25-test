@@ -23,7 +23,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Имя</th>
                         <th scope="col">Фамилия</th>
-                        <th scope="col">Невыплачено, часы</th>
+                        <th scope="col">Невыплачено, руб/час</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -35,7 +35,7 @@
                                 <th scope="row">{{ $transaction->id }}</th>
                                 <td>{{ $transaction->employee->lname }}</td>
                                 <td>{{ $transaction->employee->fname }}</td>
-                                <td>{{ $transaction->hours }}</td>
+                                <td>{{ $transaction->getTotalSum($transaction->employee->id, $transaction->hours) . ' / ' . $transaction->hours }}</td>
                                 <td>
                                     <button type="submit" class="btn btn-danger">
                                         Выплатить

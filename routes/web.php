@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Auth::routes();
 
 
 Route::middleware('auth')->group(function(){
+    Route::redirect('/', '/home');
     Route::get('/home', Employee\IndexController::class)->name('home');
     Route::post('/home', Transaction\StoreController::class)->name('transactions.store');
     Route::patch('/transactions/{transaction}', Transaction\UpdateController::class)->name('transactions.update');
@@ -25,6 +27,3 @@ Route::middleware('auth')->group(function(){
 });
 
 
-Auth::routes();
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

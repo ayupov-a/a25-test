@@ -2,14 +2,22 @@
 
 namespace App\Http\Controllers\Transaction;
 
+use App\Http\Resources\Transaction\IndexResource;
 use App\Models\Transaction;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends BaseController
 {
-    public function __invoke(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function __invoke()
     {
         $transactions = $this->service->index();
-        return view("transaction.index", compact('transactions'));
+        if (Auth::getDefaultDriver() === 'web') {
+            return view("transaction.index", compact('transactions'));
+
+        } else {
+            return $this->sendResponse(IndexResource::collection(Transaction::all()), 'Transactions fetched');
+        }
+
     }
 
 }

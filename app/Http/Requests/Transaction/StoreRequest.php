@@ -14,6 +14,14 @@ class StoreRequest extends FormRequest
         return true;
     }
 
+    public function messages()
+    {
+        return [
+            'employee_id.required' => 'A employee_id is required',
+            'hours.required' => 'A hours is required',
+        ];
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -22,8 +30,8 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'employee_id' => 'integer',
-            'hours' => 'integer'
+            'employee_id' => 'integer|exists:App\Models\Employee,id|required',
+            'hours' => 'integer|required',
         ];
     }
 }

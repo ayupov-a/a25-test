@@ -6,20 +6,19 @@ namespace App\Services\Transaction;
 
 use App\Models\Transaction;
 use Carbon\Carbon;
-use PhpParser\Node\NullableType;
 
 class Service
 {
     public function index()
     {
-        return Transaction::where('is_payed')
+        return Transaction::where('is_paid')
             ->orderByDesc('created_at')
             ->paginate(10);
     }
 
     public function store($data)
     {
-        Transaction::create($data);
+        return Transaction::create($data);
     }
 
     public function update($transaction, $data)
@@ -29,19 +28,18 @@ class Service
 
     public function pay($transaction_id)
     {
-//        dd(Transaction::where('is_payed')->get());
-        if ($transaction_id) {
-            Transaction::find($transaction_id)
-                ->update([
-                    'is_payed' => Carbon::now(),
-                ]);
-        } else {
-            $transactions = Transaction::where('is_payed')->get();
+        if ($transaction_id === "all") {
+            $transactions = Transaction::where('is_paid')->get();
             foreach ($transactions as $transaction) {
                 $transaction->update([
-                    'is_payed' => Carbon::now(),
+                    'is_paid' => Carbon::now(),
                 ]);
             }
+        } else {
+            return Transaction::findOrFail($transaction_id)
+                ->update([
+                    'is_paid' => Carbon::now(),
+                ]);
         }
     }
 }

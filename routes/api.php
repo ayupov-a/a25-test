@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Transaction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('login', [AuthController::class, 'signin']);
+Route::post('register', [AuthController::class, 'signup']);
+
+Route::middleware('auth:sanctum')->group( function () {
+    Route::patch('transactions/{transaction}', Transaction\UpdateController::class);
+    Route::get('transactions', Transaction\IndexController::class);
+    Route::post('transactions', Transaction\StoreController::class);
 });
+
+

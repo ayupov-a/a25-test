@@ -4,7 +4,7 @@ namespace App\Http\Requests\Transaction;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+class IndexRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,8 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'hours' => 'integer',
-            'employee_id' => 'integer',
-            'is_paid' => 'datetime'
+            'employee_id' => 'integer|required',
+            'hours' => 'integer|required',
         ];
     }
 }

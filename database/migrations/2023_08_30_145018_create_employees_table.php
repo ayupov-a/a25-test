@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string("lname")->comment("Фамилия");
-            $table->string("fname")->comment("Имя");
-            $table->string("sname")->comment("Отчество");
+            $table->string("lname")->default('Last name')->comment("Фамилия");
+            $table->string("fname")->default('First name')->comment("Имя");
+            $table->string("sname")->default('Surname')->comment("Отчество");
             $table->string("email")->unique()->comment("Почта");
             $table->timestamp("email_verified_at")->nullable()->comment("Время верификации почты");
             $table->string('password')->comment("Пароль");

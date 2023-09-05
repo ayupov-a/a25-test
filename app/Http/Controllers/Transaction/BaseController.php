@@ -4,10 +4,10 @@
 namespace App\Http\Controllers\Transaction;
 
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\API;
 use App\Services\Transaction\Service;
 
-class BaseController extends Controller
+class BaseController extends API\BaseController
 {
     public $service;
 
@@ -15,4 +15,5 @@ class BaseController extends Controller
     {
         $this->service = $service;
     }
+
 }
