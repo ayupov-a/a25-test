@@ -98,3 +98,11 @@ API позволяет регистрировать сотрудников, со
       --header 'Content-Type: application/json'
 ```
 
+# Tests
+
+API покрыто feature тестами 
+
+```bash
+    $ sail artisan test
+```
+
